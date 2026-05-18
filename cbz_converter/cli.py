@@ -21,7 +21,7 @@ def main():
     else:
         input_dir = args.cbz
         output_dir = args.output or input_dir + "-pdf"
-        for entry in os.listdir(input_dir):
+        for entry in sorted(os.listdir(input_dir)):
             input_file = os.path.join(input_dir, entry)
             output_file = os.path.join(output_dir, os.path.splitext(entry)[0] + ".pdf")
             if cbz2pdf(input_file, output_file):
