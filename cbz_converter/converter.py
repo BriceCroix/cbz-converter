@@ -3,9 +3,10 @@ import tempfile
 import zipfile
 
 import img2pdf
+import PIL
 
 
-def cbz2pdf(input: str, output: str) -> bool:
+def cbz2pdf(input: str, output: str, quality: int | None = None) -> bool:
     """Converts a cbz file into a pdf.
 
     Parameters
@@ -14,6 +15,8 @@ def cbz2pdf(input: str, output: str) -> bool:
         Path to a cbz file.
     output : str
         Path to pdf file to be created.
+    quality : int | None (optional)
+        If provided, allows to lower the quality of the images (0 is worst, 100 is best)
 
     Returns
     -------
@@ -32,6 +35,9 @@ def cbz2pdf(input: str, output: str) -> bool:
                 os.path.join(tempdir, filename)
                 for filename in sorted(os.listdir(tempdir))
             ]
+            if quality is not None:
+                for file in files:
+                    PIL.Image.open(file).save(file, quality=quality, optimize=True)
             pdf.write(img2pdf.convert(files))
             return True
         except Exception as e:
