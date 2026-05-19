@@ -50,6 +50,7 @@ Supported matchers are :
 
     for i_file in files:
         o_file = compute_output_path(i_file, args.output)
+        print(f"Creating {o_file}... ", end="", flush=True)
         if cbz2pdf(
             i_file,
             o_file,
@@ -57,4 +58,6 @@ Supported matchers are :
             width=args.width,
             height=args.height,
         ):
-            print(f'Created file "{o_file}"')
+            print("Done !")
+        else:
+            print("ERROR !")
