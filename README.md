@@ -10,3 +10,9 @@ uv run python -m cbz_converter <CBZ> [--output <PDF>]
 
 - `<CBZ>` can either be a `.cbz` file or a directory containing `.cbz` files.
 - `<PDF>` (optional) the file to create, or the folder to create when `<CBZ>` is itself a folder.
+
+Use the following to learn about all options :
+
+```bash
+uv run python -m cbz_converter --help
+```
